@@ -16,7 +16,7 @@ require __DIR__ . '/../vendor/autoload.php'; // se encarga de incluir todas las 
 
 
 $app = AppFactory::create();
-$app->setBasePath("/practica2parcial/public");
+$app->setBasePath("/RUHL_2DOPARCIALPROG/public");
 new Database;
 
 $app->group('/users', function (RouteCollectorProxy $group) {
@@ -43,9 +43,10 @@ $app->group('/materia', function (RouteCollectorProxy $group) {
 
 $app->group('/inscripcion', function (RouteCollectorProxy $group) {
 
-    $group->get('/{id}', MateriaController::class . ":getAll")->add(new AuthMiddleware);
+    $group->get('/{id}', MateriaController::class . ":")->add(new AuthMiddleware);
 
-    $group->post('/{id}', MateriaController::class . ":addOne")->add(new AuthMiddleware);
+    //PUNTO 4
+    $group->post('/{id}', MateriaController::class . ":inscripcionAlumno")->add(new AuthMiddleware);
 
 })->add(new JsonMiddleware);
 
