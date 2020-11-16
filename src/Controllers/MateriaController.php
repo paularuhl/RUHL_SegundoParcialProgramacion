@@ -23,13 +23,6 @@ class MateriaController
         return $response;
     }
 
-    public function getOne(Request $request, Response $response, $args)
-    {
-        $rta = Materia::find($args['id']);
-
-        $response->getBody()->write(json_encode($rta));
-        return $response;
-    }
 
     public function addOne(Request $request, Response $response, $args)
     {
@@ -55,14 +48,6 @@ class MateriaController
         return $response;
     }
 
-    public function update(Request $request, Response $response, $args)
-    {
-        $user = Materia::find($args['id']);
-
-        $rta = $user->save();
-        $response->getBody()->write(json_encode($rta));
-        return $response;
-    }
 
     public function getAllNotes(Request $request, Response $response, $args)
     {
