@@ -49,13 +49,23 @@ class MateriaController
     }
 
 
-    public function getAllNotes(Request $request, Response $response, $args)
+    public function putNote(Request $request, Response $response, $args)
     {
-        $user = Materia::find($args['id']);
+        $body = $request->getParsedBody();
+        $tipo = $body['token']->tipo;
+        if ($tipo == 'profesor') {
 
-        $rta = $user->delete();
+        $am = Alumno_Materia::where('idMateria', $args['id'])->where('idAlumno', $body['idAlumno']);
+        $am->nota = $body['nota'];
+        $rta = $am->save();
+        } else {
+            $rta = "solo un profesor puede poner nota";
+        }
+
         $response->getBody()->write(json_encode($rta));
+
         return $response;
+        
     }
 
     public function inscripcionAlumno(Request $request, Response $response, $args)

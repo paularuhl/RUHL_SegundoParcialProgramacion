@@ -53,7 +53,7 @@ $app->group('/inscripcion', function (RouteCollectorProxy $group) {
 
 $app->group('/notas', function (RouteCollectorProxy $group) {
 
-    $group->post('/{id}', MateriaController::class . ":getAllNotes")->add(new AuthMiddleware);
+    $group->put('/{id}', MateriaController::class . ":putNote")->add(new AuthMiddleware);
 
 })->add(new JsonMiddleware);
 
